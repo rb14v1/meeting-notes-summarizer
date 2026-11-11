@@ -7,13 +7,16 @@ RUN npm run build
 
 FROM node:22-alpine AS dev
 WORKDIR /app
-COPY package*.json ./
+RUN chown node:node /app
+USER node
+COPY --chown=node:node package*.json ./
 RUN npm install
-COPY . .
+COPY --chown=node:node . .
 EXPOSE 5173
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
-FROM nginx:alpine AS prod
+FROM nginxinc/nginx-unprivileged:alpine AS prod
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
+USER 101
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
