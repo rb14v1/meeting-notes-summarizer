@@ -12,7 +12,7 @@ USER node
 COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
-EXPOSE 5173
+EXPOSE 8080
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
 FROM nginxinc/nginx-unprivileged:alpine AS prod
