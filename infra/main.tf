@@ -22,8 +22,8 @@ provider "azurerm" {
 
 resource "azurerm_postgresql_flexible_server" "postgresql" {
   tags = var.common_tags
-  name                   = "psql-test-env"
-  resource_group_name    = "test-env-"
+  name                   = "psql-meeting-notes-summarizer"
+  resource_group_name    = "meeting-notes-summarizer"
   location               = "uksouth"
   version                = "16"
   sku_name               = "B_Standard_B1ms"
@@ -58,7 +58,7 @@ data "azurerm_private_dns_zone" "postgresql_dns_zone" {
 
 resource "azurerm_private_dns_zone_virtual_network_link" "postgresql_dns_zone_link" {
   tags = var.common_tags
-  name                  = "link-test-env"
+  name                  = "link-meeting-notes-summarizer"
   resource_group_name   = var.hub_resource_group
   private_dns_zone_name = data.azurerm_private_dns_zone.postgresql_dns_zone.name
   virtual_network_id    = var.vnet_id
@@ -66,8 +66,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "postgresql_dns_zone_li
 
 resource "azurerm_private_endpoint" "postgresql_pe" {
   tags = var.common_tags
-  name                = "pe-psql-test-env"
-  resource_group_name = "test-env-"
+  name                = "pe-psql-meeting-notes-summarizer"
+  resource_group_name = "meeting-notes-summarizer"
   location            = "uksouth"
   subnet_id           = var.subnet_id
 
