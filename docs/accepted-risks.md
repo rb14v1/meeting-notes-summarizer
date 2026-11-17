@@ -13,7 +13,8 @@ the latest. When a fix comes out, upgrade the dependency and remove the entry.
 
 ## Pinned patched versions
 
-- Backend (`backend/requirements.txt`): `Django==5.2.9`,
+- Backend (`backend/requirements.txt`): `Django>=5.2.11,<5.3` (CVE-2026-1287 and
+  other HIGH CVEs fixed in 5.2.11; resolves to the latest 5.2.x patch),
   `djangorestframework==3.16.1`, `djangorestframework-simplejwt==5.5.1`.
 - Frontend (`frontend/package.json`): `axios@^1.13.5` (CVE-2026-25639),
   `react-router-dom@^6.30.2` (open-redirect XSS). Transitive versions are
