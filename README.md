@@ -131,6 +131,13 @@ npm run build    # production build (tsc -b && vite build)
 Set `VITE_API_BASE_URL` (see `frontend/.env.example`) if the backend isn't
 at `http://localhost:8000/api`.
 
+## Database backups and restore
+
+The production Azure PostgreSQL Flexible Server (`infra/main.tf`) has automated
+backups with 35-day retention, geo-redundant backup storage and point-in-time
+recovery. The restore procedure and the restore-test log are in
+[`docs/restore.md`](docs/restore.md).
+
 ## Auth trade-off (dev-only)
 
 The access token is kept in memory only; the refresh token is kept in
